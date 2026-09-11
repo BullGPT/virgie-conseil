@@ -1,33 +1,27 @@
+import Image from "next/image";
+import { brand } from "@/content/site";
 import { cn } from "@/lib/utils";
 
+/** Dimensions du fichier détouré, pour réserver le bon rapport. */
+const LOGO = { src: "/logo-vigie.png", width: 525, height: 279 };
+
 /**
- * Logo placeholder « Vigie » : une marque géométrique (le faisceau d'une
- * vigie) + le nom. À remplacer par le logo définitif fourni par le client.
- * Dessiné en SVG inline pour hériter des couleurs de la charte.
+ * Logo de la marque. Le fichier est détouré (fond transparent), ce qui lui
+ * permet de se poser sur la pilule translucide de la navbar sans y dessiner
+ * un rectangle blanc.
+ * `alt=""` : le lien qui l'entoure porte déjà son propre libellé.
  */
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 30 30"
-        fill="none"
-        aria-hidden="true"
-        className="shrink-0"
-      >
-        <circle cx="15" cy="15" r="14" stroke="currentColor" strokeWidth="2" />
-        <path
-          d="M15 7.5 L20.5 22 M15 7.5 L9.5 22"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <circle cx="15" cy="7.5" r="2.75" fill="var(--color-signal)" />
-      </svg>
-      <span className="font-display text-[1.375rem] font-bold tracking-[-0.03em]">
-        Vigie
-      </span>
-    </span>
+    <Image
+      src={LOGO.src}
+      alt=""
+      width={LOGO.width}
+      height={LOGO.height}
+      priority
+      sizes="120px"
+      className={cn("h-11 w-auto", className)}
+      title={brand.name}
+    />
   );
 }

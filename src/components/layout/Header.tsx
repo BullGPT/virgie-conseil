@@ -130,7 +130,9 @@ export function Header() {
           <Link
             href="/#accueil"
             onClick={(event) => handleNavClick(event, "/#accueil")}
-            className="shrink-0 text-ink transition-colors hover:text-signal"
+            /* Le logo est une image : le survol joue sur l'opacité, la
+               couleur n'étant plus héritée comme avec l'ancien SVG. */
+            className="shrink-0 transition-opacity hover:opacity-70"
             aria-label={`${brand.name} — retour à l'accueil`}
           >
             <Logo />

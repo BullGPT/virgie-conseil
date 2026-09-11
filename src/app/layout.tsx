@@ -53,6 +53,7 @@ const jsonLd = {
   name: brand.name,
   description: brand.description,
   url: brand.url,
+  logo: `${brand.url}/logo-vigie.png`,
   email: brand.email,
   telephone: brand.phone,
   areaServed: { "@type": "Country", name: "France" },
