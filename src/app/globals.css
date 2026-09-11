@@ -30,26 +30,26 @@
   --color-signal-600: #1f55d6;
 
   /* --- Polices ----------------------------------------------------------- */
-  /* Titres : Excon (Fontshare), utilisé en Medium. */
-  --font-display: var(--font-excon), ui-sans-serif, system-ui, sans-serif;
-  /* Texte courant : Ranade (Fontshare), utilisé en Light. */
-  --font-sans: var(--font-ranade), ui-sans-serif, system-ui, sans-serif;
+  /* Titres : Hind (Fontshare), utilisé en Bold. */
+  --font-display: var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  /* Texte courant : Amulya (Fontshare), utilisé en Regular. */
+  --font-sans: var(--font-amulya), ui-sans-serif, system-ui, sans-serif;
 
   /* --- Échelle typographique -------------------------------------------- */
   --text-h1: clamp(2.4rem, 4vw, 3.5rem);
   --text-h1--line-height: 1.08;
   --text-h1--letter-spacing: -0.02em;
-  --text-h1--font-weight: 500;
+  --text-h1--font-weight: 700;
 
   --text-h2: clamp(1.9rem, 3vw, 2.5rem);
   --text-h2--line-height: 1.15;
   --text-h2--letter-spacing: -0.02em;
-  --text-h2--font-weight: 500;
+  --text-h2--font-weight: 700;
 
   --text-h3: 1.25rem;
   --text-h3--line-height: 1.35;
   --text-h3--letter-spacing: -0.02em;
-  --text-h3--font-weight: 500;
+  --text-h3--font-weight: 700;
 
   --text-body: 1.0625rem;
   --text-body--line-height: 1.65;
@@ -102,9 +102,9 @@
     color: var(--color-ink-soft);
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    /* Ranade Light : la graisse par défaut de tout le texte courant.
+    /* Amulya Regular : la graisse par défaut de tout le texte courant.
        `font-medium` (500) relève les libellés, boutons et liens de nav. */
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -119,9 +119,9 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    /* Excon Medium. Posé ici aussi pour qu'un titre sans classe `text-h*`
-       n'hérite pas du Light du body. */
-    font-weight: 500;
+    /* Hind Bold. Posé ici aussi pour qu'un titre sans classe `text-h*`
+       n'hérite pas du Regular du body. */
+    font-weight: 700;
     color: var(--color-ink);
     letter-spacing: -0.02em;
     text-wrap: balance;

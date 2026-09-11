@@ -5,28 +5,25 @@ import { Footer } from "@/components/layout/Footer";
 import { brand } from "@/content/site";
 import "./globals.css";
 
-/* Excon + Ranade viennent de Fontshare, pas de Google Fonts : les .woff2
+/* Hind + Amulya viennent de Fontshare, pas de Google Fonts : les .woff2
    sont auto-hébergés dans ./fonts et servis par next/font/local, ce qui
    évite toute requête vers un domaine tiers au chargement.
    Seules les graisses réellement utilisées sont embarquées. */
 
-/** Titres — Excon Medium, et Bold pour le logo et les chiffres clés. */
-const excon = localFont({
-  src: [
-    { path: "./fonts/Excon-500.woff2", weight: "500", style: "normal" },
-    { path: "./fonts/Excon-700.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-excon",
+/** Titres — Hind Bold. Sert aussi au logo et aux chiffres clés. */
+const hind = localFont({
+  src: [{ path: "./fonts/Hind-700.woff2", weight: "700", style: "normal" }],
+  variable: "--font-hind",
   display: "swap",
 });
 
-/** Texte courant — Ranade Light, et Medium pour les libellés et boutons. */
-const ranade = localFont({
+/** Texte courant — Amulya Regular, et Medium pour les libellés et boutons. */
+const amulya = localFont({
   src: [
-    { path: "./fonts/Ranade-300.woff2", weight: "300", style: "normal" },
-    { path: "./fonts/Ranade-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Amulya-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Amulya-500.woff2", weight: "500", style: "normal" },
   ],
-  variable: "--font-ranade",
+  variable: "--font-amulya",
   display: "swap",
 });
 
@@ -73,7 +70,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${ranade.variable} ${excon.variable}`}>
+    <html lang="fr" className={`${amulya.variable} ${hind.variable}`}>
       <body className="bg-surface text-ink-soft antialiased">
         <script
           type="application/ld+json"

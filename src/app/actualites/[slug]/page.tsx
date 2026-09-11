@@ -69,7 +69,7 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Corps de l'article. Prose stylée à la main : pas de plugin. */}
           <div className="mt-10 flex flex-col gap-6">
-            <p className="text-h3 font-light leading-[1.5] text-ink">
+            <p className="text-h3 font-normal leading-[1.5] text-ink">
               {post.excerpt}
             </p>
             {post.body.map((paragraph) => (
