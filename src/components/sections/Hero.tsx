@@ -1,5 +1,4 @@
 import { Container } from "@/components/layout/Container";
-import { Blob } from "@/components/ui/Blob";
 import { Button } from "@/components/ui/Button";
 import { hero } from "@/content/site";
 
@@ -8,14 +7,8 @@ export function Hero() {
     <section
       id="accueil"
       aria-labelledby="hero-titre"
-      className="relative isolate overflow-hidden bg-surface py-24 lg:py-32"
+      className="bg-surface py-24 lg:py-32"
     >
-      {/* Forme organique, ancrée au bord droit, masquée sous lg. */}
-      <Blob
-        shape="hero"
-        className="pointer-events-none absolute -right-40 -top-28 -z-10 hidden h-[820px] w-[820px] lg:block"
-      />
-
       <Container>
         {/* Colonne unique centrée : pas de visuel sur la headline. */}
         <div className="mx-auto flex max-w-[820px] flex-col items-center text-center">
