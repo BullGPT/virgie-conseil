@@ -85,20 +85,6 @@ export const hero = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* 3. Barre de chiffres clés                                                   */
-/* -------------------------------------------------------------------------- */
-
-export const stats = {
-  /** 4 items exactement : 2×2 sur mobile, une ligne en desktop. */
-  items: [
-    { value: "[TODO] Chiffre", label: "[TODO] Libellé ancienneté — 2 à 4 mots" },
-    { value: "[TODO] Chiffre", label: "[TODO] Libellé indépendance — 2 à 4 mots" },
-    { value: "[TODO] Chiffre", label: "[TODO] Libellé agréments — 2 à 4 mots" },
-    { value: "[TODO] Chiffre", label: "[TODO] Libellé couverture — 2 à 4 mots" },
-  ],
-};
-
-/* -------------------------------------------------------------------------- */
 /* 4. Ce que nous proposons                                                    */
 /* -------------------------------------------------------------------------- */
 
@@ -229,13 +215,10 @@ export const contactForm = {
 /* -------------------------------------------------------------------------- */
 
 export const solutions = {
+  /** Titre non affiché : il nomme la bande pour les lecteurs d'écran. */
   title: "[TODO] Titre de section — 2 à 4 mots",
-  intro: [
-    "[TODO] Paragraphe d'intro 1 — 35 à 50 mots",
-    "[TODO] Paragraphe d'intro 2 — 35 à 50 mots",
-  ],
   /**
-   * 4 cartes exactement, sur une seule ligne en desktop.
+   * 4 items exactement, sur une seule ligne en desktop.
    * Les illustrations sont carrées (1254 × 1254) et affichées en entier :
    * le cadre respecte leur format, rien n'est rogné.
    * `alt` est vide car le titre juste en dessous nomme déjà le dessin.

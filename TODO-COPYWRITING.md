@@ -5,7 +5,7 @@ Remplacer chaque valeur ci-dessous ; la longueur cible est indiquée à droite.
 Aucun composant n'est à toucher : rien n'est écrit en dur dans le JSX.
 Les index `[n]` sont ceux des tableaux, dans l'ordre du fichier.
 
-**201 placeholders à remplir.**
+**191 placeholders à remplir.**
 
 ## Identité — 10
 
@@ -27,17 +27,6 @@ Les index `[n]` sont ceux des tableaux, dans l'ordre du fichier.
 - [ ] `hero.body` — Paragraphe d'intro — 40 à 60 mots. Il porte la promesse : à qui s'adresse le cabinet, sur quoi il intervient, et ce qui le distingue des autres.
 - [ ] `hero.primaryCta.label` — CTA 1 — 2-3 mots
 - [ ] `hero.secondaryCta.label` — CTA 2 — 2-3 mots
-
-## 3. Chiffres clés — 8
-
-- [ ] `stats.items[1].value` — Chiffre
-- [ ] `stats.items[1].label` — Libellé ancienneté — 2 à 4 mots
-- [ ] `stats.items[2].value` — Chiffre
-- [ ] `stats.items[2].label` — Libellé indépendance — 2 à 4 mots
-- [ ] `stats.items[3].value` — Chiffre
-- [ ] `stats.items[3].label` — Libellé agréments — 2 à 4 mots
-- [ ] `stats.items[4].value` — Chiffre
-- [ ] `stats.items[4].label` — Libellé couverture — 2 à 4 mots
 
 ## 4. Ce que nous proposons — 9
 
@@ -93,11 +82,9 @@ Les index `[n]` sont ceux des tableaux, dans l'ordre du fichier.
 - [ ] `contactForm.errorEmail` — Adresse email invalide — 3 à 6 mots
 - [ ] `contactForm.errorTooLong` — Texte trop long — 3 à 6 mots
 
-## 7. Nos solutions — 7
+## 7. Nos solutions — 5
 
 - [ ] `solutions.title` — Titre de section — 2 à 4 mots
-- [ ] `solutions.intro[1]` — Paragraphe d'intro 1 — 35 à 50 mots
-- [ ] `solutions.intro[2]` — Paragraphe d'intro 2 — 35 à 50 mots
 - [ ] `solutions.cards[1].description` — Description Fiscalité — 12 à 20 mots
 - [ ] `solutions.cards[2].description` — Description Patrimoine — 12 à 20 mots
 - [ ] `solutions.cards[3].description` — Description Retraite — 12 à 20 mots

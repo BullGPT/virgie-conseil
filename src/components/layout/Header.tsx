@@ -122,8 +122,11 @@ export function Header() {
           aria-label="Navigation principale"
           className={cn(
             "relative flex flex-wrap items-center justify-between gap-2 rounded-3xl",
-            "border bg-surface/90 p-2 ps-5 backdrop-blur-md",
-            "transition-shadow duration-200 lg:flex-nowrap lg:py-0 lg:pe-2",
+            /* La marge verticale vaut à toutes les tailles : sans elle, le
+               logo, qui est l'élément le plus haut, fixerait la hauteur de
+               la pilule et viendrait toucher ses bords. */
+            "border bg-surface/90 p-3 ps-5 backdrop-blur-md",
+            "transition-shadow duration-200 lg:flex-nowrap lg:pe-3",
             scrolled ? "border-transparent shadow-header" : "border-line",
           )}
         >
