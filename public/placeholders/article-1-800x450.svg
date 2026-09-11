@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Couverture article 1">
+  <rect width="800" height="450" rx="16" fill="#EEF0F4"/>
+  <rect x="0.5" y="0.5" width="799" height="449" rx="15.5" fill="none" stroke="#D8DDE6"/>
+  <path d="M0 0 L800 450 M800 0 L0 450" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="50%" y="48%" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600" fill="#8B95A7" text-anchor="middle">Couverture article 1</text>
+  <text x="50%" y="48%" dy="26" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#A6AFBE" text-anchor="middle">800 × 450</text>
+</svg>

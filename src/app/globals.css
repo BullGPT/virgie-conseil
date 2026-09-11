@@ -1,26 +1,208 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   VIGIE — DESIGN SYSTEM
+   Source de vérité unique de la charte. Changer un token ici met à jour
+   tout le site. Ne pas coder de valeur brute (#hex, px de rythme) ailleurs.
+   ========================================================================== */
+
+@theme {
+  /* --- Couleurs ---------------------------------------------------------
+     Une seule couleur d'accent : le bleu. Il porte à la fois la navigation,
+     la hiérarchie et l'action. Le blanc porte le fond, le gris clair les
+     sections alternées. Le navy reste réservé au texte.
+     La hiérarchie entre deux actions se fait par la forme du bouton
+     (plein vs. contour), plus par la couleur. */
+  --color-ink: #10254f;
+  --color-ink-soft: #4a5a78;
+  --color-signal: #2f6bf6;
+  --color-signal-050: #edf3ff;
+  /* Gris clair des sections alternées (anciennement le beige « sand »). */
+  --color-mist: #f1f4f8;
+  /* Bleu ciel des formes organiques décoratives (composant Blob). */
+  --color-sky: #bae6ff;
+  --color-surface: #ffffff;
+  --color-line: #e6e9f0;
+
+  /* Variantes dérivées, uniquement pour les états d'interaction.
+     signal-600 sert aussi au texte bleu posé sur un fond teinté
+     (signal-050 ou mist), où le bleu de base passerait sous le seuil AA. */
+  --color-signal-600: #1f55d6;
+
+  /* --- Polices ----------------------------------------------------------- */
+  /* Titres : Excon (Fontshare), utilisé en Medium. */
+  --font-display: var(--font-excon), ui-sans-serif, system-ui, sans-serif;
+  /* Texte courant : Ranade (Fontshare), utilisé en Light. */
+  --font-sans: var(--font-ranade), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Échelle typographique -------------------------------------------- */
+  --text-h1: clamp(2.4rem, 4vw, 3.5rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 500;
+
+  --text-h2: clamp(1.9rem, 3vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 500;
+
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.35;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 500;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.6;
+
+  --text-legal: 0.75rem;
+  --text-legal--line-height: 1.65;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --container-site: 1180px;
+
+  /* --- Ombres ------------------------------------------------------------
+     Quasi inexistantes : les cartes sont définies par une bordure 1px.
+     L'ombre douce est réservée au header au scroll. */
+  --shadow-header: 0 6px 24px -12px rgb(16 37 79 / 0.22);
+
+  /* --- Mouvement ---------------------------------------------------------- */
+  --animate-marquee-ltr: marquee-ltr 65s linear infinite;
+  --animate-marquee-rtl: marquee-rtl 65s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    /* Ranade Light : la graisse par défaut de tout le texte courant.
+       `font-medium` (500) relève les libellés, boutons et liens de nav. */
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Filet de sécurité : aucun débordement horizontal quoi qu'il arrive.
+       `clip` et non `hidden` : `hidden` ferait du body un conteneur de
+       défilement et casserait le `position: sticky` du header. */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    /* Excon Medium. Posé ici aussi pour qu'un titre sans classe `text-h*`
+       n'hérite pas du Light du body. */
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Cible d'ancrage : la navbar flottante ne doit pas recouvrir le haut
+     de la section vers laquelle on vient de défiler. */
+  section[id] {
+    scroll-margin-top: 7rem;
+  }
+
+  /* Focus visible partout : anneau bleu 2px avec offset. */
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-signal-050);
+    color: var(--color-ink);
+  }
+}
+
+@layer utilities {
+  /* Longueur de ligne de confort : 68 caractères max. */
+  .measure {
+    max-width: 68ch;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Aucune animation au scroll sur ce site ; les transitions d'interaction
+   et les marquees sont neutralisées si l'utilisateur le demande. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Marquee des partenaires
+   Défilement en CSS pur : la piste contient la liste en double et se déplace
+   de 50% de sa largeur, ce qui la ramène exactement à son point de départ.
+   -------------------------------------------------------------------------- */
+.marquee-viewport {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+/* Bloc placé en fin de fichier pour passer après la règle globale de
+   réduction du mouvement : marquee figé, rangée scrollable à la main. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .marquee-track {
+    animation-name: none !important;
+    transform: none !important;
+  }
+
+  .marquee-duplicate {
+    display: none;
+  }
 }
