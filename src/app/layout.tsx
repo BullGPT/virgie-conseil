@@ -46,7 +46,27 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/** JSON-LD. Toutes les valeurs sont des placeholders à confirmer. */
+/** Une valeur encore marquée [TODO] ne doit pas partir dans les données
+    structurées : mieux vaut un champ absent qu'un champ faux. */
+const filled = (value: string) => !value.startsWith("[TODO]");
+
+const postalAddress = [
+  brand.address.street,
+  brand.address.postalCode,
+  brand.address.city,
+].every(filled)
+  ? {
+      "@type": "PostalAddress",
+      streetAddress: brand.address.street,
+      postalCode: brand.address.postalCode,
+      addressLocality: brand.address.city,
+      addressCountry: "FR",
+    }
+  : undefined;
+
+const sameAs = brand.socials.map((social) => social.href).filter(filled);
+
+/** JSON-LD décrivant le cabinet, repris par les moteurs de recherche. */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
@@ -54,17 +74,11 @@ const jsonLd = {
   description: brand.description,
   url: brand.url,
   logo: `${brand.url}/logo-vigie.png`,
-  email: brand.email,
-  telephone: brand.phone,
+  email: filled(brand.email) ? brand.email : undefined,
+  telephone: filled(brand.phone) ? brand.phone : undefined,
   areaServed: { "@type": "Country", name: "France" },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: brand.address.street,
-    postalCode: brand.address.postalCode,
-    addressLocality: brand.address.city,
-    addressCountry: "FR",
-  },
-  sameAs: brand.socials.map((social) => social.href),
+  address: postalAddress,
+  sameAs: sameAs.length > 0 ? sameAs : undefined,
 };
 
 export default function RootLayout({

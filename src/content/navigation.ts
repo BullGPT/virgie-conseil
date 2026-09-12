@@ -22,12 +22,12 @@ export const mainNav: NavLink[] = [
 
 /** CTA du header : pilule bleue pleine, toujours à droite. */
 export const headerCta = {
-  label: "[TODO] CTA header — 2 mots",
-  href: "/contact",
+  label: "Nous contacter",
+  href: "/#contact",
 };
 
 /** Unique bouton du pied de page. */
 export const legalCta = {
-  label: "[TODO] Libellé du bouton — 2 à 4 mots",
+  label: "Mentions légales",
   href: "/mentions-legales",
 };

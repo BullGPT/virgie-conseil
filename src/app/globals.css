@@ -67,28 +67,6 @@
      Quasi inexistantes : les cartes sont définies par une bordure 1px.
      L'ombre douce est réservée au header au scroll. */
   --shadow-header: 0 6px 24px -12px rgb(16 37 79 / 0.22);
-
-  /* --- Mouvement ---------------------------------------------------------- */
-  --animate-marquee-ltr: marquee-ltr 65s linear infinite;
-  --animate-marquee-rtl: marquee-rtl 65s linear infinite;
-}
-
-@keyframes marquee-ltr {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes marquee-rtl {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 @layer base {
@@ -160,8 +138,8 @@
   }
 }
 
-/* Aucune animation au scroll sur ce site ; les transitions d'interaction
-   et les marquees sont neutralisées si l'utilisateur le demande. */
+/* Aucune animation au scroll sur ce site : les transitions d’interaction
+   sont neutralisées si l’utilisateur le demande. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -176,33 +154,3 @@
   }
 }
 
-/* --------------------------------------------------------------------------
-   Marquee des partenaires
-   Défilement en CSS pur : la piste contient la liste en double et se déplace
-   de 50% de sa largeur, ce qui la ramène exactement à son point de départ.
-   -------------------------------------------------------------------------- */
-.marquee-viewport {
-  overflow: hidden;
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-}
-
-/* Bloc placé en fin de fichier pour passer après la règle globale de
-   réduction du mouvement : marquee figé, rangée scrollable à la main. */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-viewport {
-    overflow-x: auto;
-  }
-
-  .marquee-track {
-    animation-name: none !important;
-    transform: none !important;
-  }
-
-  .marquee-duplicate {
-    display: none;
-  }
-}
