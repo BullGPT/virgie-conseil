@@ -66,13 +66,12 @@ export const brand = {
     "Vigie accompagne les professionnels libéraux de santé dans le pilotage financier de leur activité : trésorerie, charges, structuration. Audit initial gratuit.",
   /** URL canonique de production, sans slash final. */
   url: "https://www.cabinet-vigie.fr",
-  /** Le domaine est imposé par le document ; la partie locale est à confirmer. */
-  email: "contact@cabinet-vigie.fr",
+  email: "ernst.maxime@cabinet-vigie.fr",
   phone: "[TODO] +33 X XX XX XX XX",
   address: {
-    street: "[TODO] Numéro et rue",
-    postalCode: "[TODO] Code postal",
-    city: "[TODO] Ville",
+    street: "12 bis rue de Bourbach le Bas",
+    postalCode: "68290",
+    city: "Lauw",
     country: "France",
   },
   /** [TODO] Comptes non fournis. Retirer les entrées inutilisées. */
@@ -295,7 +294,7 @@ export const contactForm = {
   success:
     "Votre demande est bien envoyée. Nous revenons vers vous sous quarante-huit heures.",
   errorSend:
-    "L'envoi a échoué. Réessayez dans un instant, ou écrivez-nous directement à contact@cabinet-vigie.fr.",
+    "L'envoi a échoué. Réessayez dans un instant, ou écrivez-nous directement à ernst.maxime@cabinet-vigie.fr.",
   errorRequired: "Champ obligatoire",
   errorEmail: "Adresse email invalide",
   errorTooLong: "Texte trop long",
@@ -445,6 +444,20 @@ export type QaItem = {
   answer: string;
 };
 
+/**
+ * Blocs des mentions légales. `lines` sert aux blocs de coordonnées, dont
+ * les lignes doivent rester serrées ; `list` aux énumérations à puces.
+ */
+export type LegalBlock =
+  | { kind: "text"; value: string }
+  | { kind: "lines"; items: string[] }
+  | { kind: "list"; items: string[] };
+
+export type LegalSection = {
+  title: string;
+  blocks: LegalBlock[];
+};
+
 export const pages = {
   about: {
     eyebrow: "[TODO] Eyebrow — 2 à 4 mots",
@@ -534,58 +547,197 @@ export const pages = {
   },
 
   /**
-   * Mentions légales — obligatoires. Le document fixe les éléments à faire
-   * figurer ; les valeurs que seul le client connaît restent en [TODO].
-   * Faire relire par un professionnel avant publication.
+   * Mentions légales, fournies telles quelles par le client.
+   * Texte juridique : ne rien reformuler sans son accord.
+   * La numérotation des articles est celle de sa rédaction — elle saute
+   * volontairement le 5, et l'article 7 renvoie à « l'article 1 ».
    */
   legal: {
     eyebrow: "Informations légales",
     title: "Mentions légales",
-    lead: "Informations relatives à l'éditeur du site, à son hébergement et au traitement de vos données personnelles.",
+    lead: "Informations relatives à l'éditeur du site, à son hébergement, au périmètre de son activité et au traitement de vos données personnelles.",
     metaTitle: "Mentions légales — Vigie",
     metaDescription:
-      "Mentions légales du cabinet Vigie : éditeur, hébergeur, périmètre d'activité et traitement des données personnelles.",
+      "Mentions légales du cabinet Vigie : éditeur, hébergeur, périmètre d'activité, propriété intellectuelle et traitement des données personnelles.",
+    updatedAt: "12 septembre 2026",
     sections: [
       {
-        title: "Éditeur du site",
-        body: [
-          "Maxime Ernst, entrepreneur individuel, exerçant sous l'enseigne Vigie.",
-          "[TODO] Adresse du siège — numéro, rue, code postal, ville",
-          "[TODO] SIRET — à renseigner dès réception",
-          "Adresse électronique : contact@cabinet-vigie.fr",
-          "TVA non applicable, article 293 B du CGI.",
+        title: "1. Éditeur du site",
+        blocks: [
+          { kind: "text", value: "Le site cabinet-vigie.fr est édité par :" },
+          {
+            kind: "lines",
+            items: [
+              "Maxime ERNST, entrepreneur individuel (EI)",
+              "Exerçant sous le nom commercial Cabinet Vigie",
+              "Siège : 12 bis rue de Bourbach le Bas, 68290 Lauw, France",
+              "SIREN : 109512293",
+              "Code APE : 7022Z",
+              "Numéro de TVA intracommunautaire : non applicable",
+              "TVA non applicable, article 293 B du Code général des impôts.",
+              "Adresse électronique : ernst.maxime@cabinet-vigie.fr",
+            ],
+          },
+          {
+            kind: "text",
+            value:
+              "Activité : conseil pour les affaires et autres conseils de gestion — activité libérale non réglementée.",
+          },
         ],
       },
       {
-        title: "Directeur de la publication",
-        body: ["Maxime Ernst."],
-      },
-      {
-        title: "Hébergement",
-        body: ["[TODO] Nom, adresse et téléphone de l'hébergeur du site"],
-      },
-      {
-        title: "Périmètre d'activité",
-        body: [
-          "Le cabinet Vigie n'exerce aucune activité réglementée de conseil en investissement financier ni d'intermédiation en assurance. Il ne tient aucune comptabilité et ne rédige aucun acte juridique, ces activités relevant de professions réglementées.",
-          "Vigie ne vend aucun produit et ne perçoit aucune commission d'un tiers. Ses honoraires sont réglés exclusivement par ses clients.",
+        title: "2. Directeur de la publication",
+        blocks: [
+          {
+            kind: "text",
+            value: "Maxime ERNST, en sa qualité d'entrepreneur individuel.",
+          },
         ],
       },
       {
-        title: "Données personnelles",
-        body: [
-          "Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre à votre demande. Elles ne sont ni cédées ni exploitées à des fins commerciales.",
-          "[TODO] Durée de conservation, base légale et modalités d'exercice des droits RGPD (accès, rectification, effacement, opposition)",
+        title: "3. Hébergement",
+        blocks: [
+          { kind: "text", value: "Le site est hébergé par :" },
+          {
+            kind: "lines",
+            items: [
+              "Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis — vercel.com",
+              "Nom de domaine enregistré auprès de : Google Workspace",
+            ],
+          },
         ],
       },
       {
-        title: "Cookies",
-        body: ["[TODO] Nature des cookies déposés et modalités de refus"],
+        title: "4. Nature de l'activité et périmètre d'intervention",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "Cabinet Vigie exerce une activité de conseil en gestion et en organisation. Ses prestations consistent en l'analyse, le diagnostic et le pilotage financier de l'activité de ses clients, ainsi qu'en la coordination des professionnels qui les accompagnent.",
+          },
+          {
+            kind: "text",
+            value:
+              "Cabinet Vigie n'exerce aucune activité réglementée. En particulier, le cabinet :",
+          },
+          {
+            kind: "list",
+            items: [
+              "ne fournit aucun service de conseil en investissement financier et n'est pas enregistré en qualité de conseiller en investissements financiers ;",
+              "n'exerce aucune activité d'intermédiation en assurance ou en opérations de banque et services de paiement, et n'est pas immatriculé à l'ORIAS ;",
+              "ne réalise aucun acte relevant du monopole de l'expert-comptable, notamment la tenue, la centralisation, l'ouverture et l'arrêté des comptes ;",
+              "ne délivre aucune consultation juridique à titre principal et ne rédige aucun acte sous seing privé pour autrui.",
+            ],
+          },
+          {
+            kind: "text",
+            value:
+              "Les prestations relevant de ces domaines sont assurées par les professionnels habilités avec lesquels le cabinet travaille en partenariat, sous leur seule responsabilité.",
+          },
+        ],
       },
       {
-        title: "Propriété intellectuelle",
-        body: ["[TODO] Paragraphe de propriété intellectuelle"],
+        title: "6. Propriété intellectuelle",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "L'ensemble des éléments composant le site — structure, textes, marques, logos, illustrations, documents téléchargeables — est la propriété exclusive de Maxime ERNST ou fait l'objet d'une autorisation d'utilisation.",
+          },
+          {
+            kind: "text",
+            value:
+              "Toute reproduction, représentation, modification ou exploitation, totale ou partielle, par quelque procédé que ce soit et sur quelque support que ce soit, sans autorisation écrite préalable, est interdite et constituerait une contrefaçon au sens des articles L.335-2 et suivants du Code de la propriété intellectuelle.",
+          },
+        ],
       },
-    ] as PageSection[],
+      {
+        title: "7. Données personnelles",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "Responsable du traitement : Maxime ERNST, aux coordonnées indiquées à l'article 1.",
+          },
+          {
+            kind: "text",
+            value:
+              "Données collectées : les informations transmises volontairement via le formulaire de contact, à savoir nom, prénom, adresse électronique, numéro de téléphone le cas échéant, et les éléments relatifs à la situation décrite par l'utilisateur.",
+          },
+          {
+            kind: "text",
+            value:
+              "Finalité : répondre aux demandes de contact et, le cas échéant, établir une relation contractuelle.",
+          },
+          {
+            kind: "text",
+            value:
+              "Base légale : l'intérêt légitime du responsable de traitement à répondre aux sollicitations qui lui sont adressées, et l'exécution de mesures précontractuelles prises à la demande de l'utilisateur.",
+          },
+          {
+            kind: "text",
+            value:
+              "Destinataires : les données sont destinées au seul responsable de traitement. Elles ne font l'objet d'aucune cession, location ou transmission à des tiers à des fins commerciales.",
+          },
+          {
+            kind: "text",
+            value:
+              "Durée de conservation : 36 mois à compter du dernier contact pour les demandes n'ayant pas abouti à une relation contractuelle.",
+          },
+          {
+            /* Le texte fourni portait « par courrier électronique à X » ;
+               l'adresse de l'article 1 a été reprise. À confirmer. */
+            kind: "text",
+            value:
+              "Droits : conformément au Règlement (UE) 2016/679 et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Ces droits s'exercent par courrier électronique à ernst.maxime@cabinet-vigie.fr ou par courrier postal à l'adresse du siège.",
+          },
+          {
+            kind: "text",
+            value:
+              "Vous disposez également du droit d'introduire une réclamation auprès de la Commission Nationale de l'Informatique et des Libertés (CNIL), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — www.cnil.fr",
+          },
+        ],
+      },
+      {
+        title: "8. Cookies",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "Le site ne dépose aucun cookie de mesure d'audience ni de suivi publicitaire. Seuls peuvent être utilisés des cookies strictement nécessaires au fonctionnement du site, qui ne requièrent pas de consentement préalable.",
+          },
+        ],
+      },
+      {
+        title: "9. Responsabilité",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "Les informations publiées sur le site sont fournies à titre général et informatif. Elles ne constituent ni un conseil personnalisé, ni un engagement contractuel, et ne sauraient se substituer à une analyse individuelle de votre situation.",
+          },
+          {
+            kind: "text",
+            value:
+              "Cabinet Vigie s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées, sans pouvoir garantir leur exhaustivité. La responsabilité de l'éditeur ne saurait être engagée à raison de l'utilisation faite de ces informations.",
+          },
+          {
+            kind: "text",
+            value:
+              "Le site peut comporter des liens vers des sites tiers. L'éditeur n'exerce aucun contrôle sur leur contenu et décline toute responsabilité à cet égard.",
+          },
+        ],
+      },
+      {
+        title: "10. Droit applicable",
+        blocks: [
+          {
+            kind: "text",
+            value:
+              "Les présentes mentions légales sont soumises au droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents.",
+          },
+        ],
+      },
+    ] as LegalSection[],
   },
 };

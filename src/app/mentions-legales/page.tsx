@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/sections/PageHero";
-import { pages } from "@/content/site";
+import { pages, type LegalBlock } from "@/content/site";
 
 const page = pages.legal;
 
@@ -12,10 +12,30 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-/** Nombre d'informations encore manquantes, affiché en tête de page. */
-const missing = page.sections
-  .flatMap((section) => section.body)
-  .filter((paragraph) => paragraph.startsWith("[TODO]")).length;
+function Block({ block }: { block: LegalBlock }) {
+  if (block.kind === "lines") {
+    // Bloc de coordonnées : lignes serrées, sans puce.
+    return (
+      <ul className="flex flex-col gap-1 text-body text-ink-soft">
+        {block.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (block.kind === "list") {
+    return (
+      <ul className="flex list-disc flex-col gap-2 ps-5 text-body text-ink-soft">
+        {block.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return <p className="text-body text-ink-soft">{block.value}</p>;
+}
 
 export default function LegalPage() {
   return (
@@ -25,47 +45,20 @@ export default function LegalPage() {
       <div className="bg-surface py-20 lg:py-28">
         <Container>
           <div className="flex max-w-[760px] flex-col gap-12">
-            {/* Rappel de chantier : disparaît de lui-même une fois les
-                dernières informations renseignées dans content/site.ts. */}
-            {missing > 0 && (
-              <p
-                role="status"
-                className="rounded-2xl border border-signal/40 bg-signal-050 px-6 py-5 text-small text-ink"
-              >
-                <strong className="font-medium">
-                  Page incomplète — {missing} information
-                  {missing > 1 ? "s" : ""} à fournir.
-                </strong>{" "}
-                Les encadrés ci-dessous marquent ce qui manque. Cette page ne
-                doit pas être publiée en l&apos;état : les mentions légales
-                sont obligatoires et engagent la responsabilité de l&apos;éditeur.
-              </p>
-            )}
-
             {page.sections.map((section) => (
               <section key={section.title}>
                 <h2 className="text-h3 text-ink">{section.title}</h2>
                 <div className="mt-3 flex flex-col gap-4">
-                  {section.body.map((paragraph) =>
-                    paragraph.startsWith("[TODO]") ? (
-                      <p
-                        key={paragraph}
-                        className="rounded-xl border border-dashed border-signal/50 bg-mist px-4 py-3 text-small text-ink-soft"
-                      >
-                        <span className="font-medium text-signal-600">
-                          À compléter —{" "}
-                        </span>
-                        {paragraph.replace("[TODO] ", "")}
-                      </p>
-                    ) : (
-                      <p key={paragraph} className="text-body text-ink-soft">
-                        {paragraph}
-                      </p>
-                    ),
-                  )}
+                  {section.blocks.map((block, index) => (
+                    <Block key={index} block={block} />
+                  ))}
                 </div>
               </section>
             ))}
+
+            <p className="border-t border-line pt-8 text-small text-ink-soft">
+              Dernière mise à jour : {page.updatedAt}
+            </p>
           </div>
         </Container>
       </div>
