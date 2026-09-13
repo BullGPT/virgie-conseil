@@ -27,8 +27,10 @@ export function Offer() {
                   alt={card.image.alt}
                   width={card.image.width}
                   height={card.image.height}
-                  sizes="120px"
-                  className="size-[120px] object-contain"
+                  sizes="140px"
+                  /* Les illustrations portent un fond très pâle : l'arrondi
+                     évite un bord carré visible sur la carte blanche. */
+                  className="size-[140px] rounded-xl object-contain"
                 />
                 <h3 className="mt-6 text-h3 text-ink">{card.title}</h3>
                 <p className="mt-3 text-body text-ink-soft">{card.body}</p>

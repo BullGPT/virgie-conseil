@@ -1,9 +1,25 @@
+import { Mail, Phone } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { ContactForm } from "@/components/ui/ContactForm";
 import { SectionMarker } from "@/components/ui/SectionMarker";
-import { contactSection } from "@/content/site";
+import { brand, contactSection } from "@/content/site";
 
-/** Encart de contact de l'accueil : le formulaire, dans le panneau bleu. */
+/** Les deux moyens de joindre le cabinet, dans l'ordre d'affichage. */
+const channels = [
+  {
+    label: contactSection.emailLabel,
+    value: brand.email,
+    href: `mailto:${brand.email}`,
+    Icon: Mail,
+  },
+  {
+    label: contactSection.phoneLabel,
+    value: brand.phone,
+    href: `tel:${brand.phone.replace(/\s/g, "")}`,
+    Icon: Phone,
+  },
+];
+
+/** Encart de contact de l'accueil : contact direct, sans formulaire. */
 export function ContactSection() {
   return (
     <section
@@ -23,9 +39,26 @@ export function ContactSection() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 max-w-[720px] rounded-2xl border border-line bg-surface p-7 lg:p-9">
-            <ContactForm />
-          </div>
+          <ul className="mx-auto mt-10 grid max-w-[760px] gap-4 sm:grid-cols-2">
+            {channels.map(({ label, value, href, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  className="flex h-full flex-col items-center gap-3 rounded-2xl border border-line bg-surface px-6 py-8 text-center transition-colors hover:border-signal"
+                >
+                  <span className="inline-flex size-12 items-center justify-center rounded-full bg-signal-050 text-signal-600">
+                    <Icon className="size-5" aria-hidden="true" strokeWidth={1.6} />
+                  </span>
+                  <span className="text-small text-ink-soft">{label}</span>
+                  {/* `break-words` : l'adresse est longue et ne doit pas
+                      déborder de la carte sur les petites largeurs. */}
+                  <span className="font-display text-h3 break-words text-signal-600">
+                    {value}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
