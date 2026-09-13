@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 560" width="520" height="560" role="img" aria-label="Illustration besoins">
-  <rect width="520" height="560" rx="16" fill="#EEF0F4"/>
-  <rect x="0.5" y="0.5" width="519" height="559" rx="15.5" fill="none" stroke="#D8DDE6"/>
-  <path d="M0 0 L520 560 M520 0 L0 560" stroke="#E2E6ED" stroke-width="1"/>
-  <text x="50%" y="48%" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600" fill="#8B95A7" text-anchor="middle">Illustration besoins</text>
-  <text x="50%" y="48%" dy="26" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#A6AFBE" text-anchor="middle">520 × 560</text>
-</svg>

@@ -6,7 +6,7 @@ import { pages, type LegalBlock } from "@/content/site";
 const page = pages.legal;
 
 export const metadata: Metadata = {
-  title: page.metaTitle,
+  title: { absolute: page.metaTitle },
   description: page.metaDescription,
   openGraph: { title: page.metaTitle, description: page.metaDescription },
   robots: { index: false, follow: true },

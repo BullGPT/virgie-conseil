@@ -67,7 +67,7 @@ export const brand = {
   /** URL canonique de production, sans slash final. */
   url: "https://www.cabinet-vigie.fr",
   email: "ernst.maxime@cabinet-vigie.fr",
-  phone: "[TODO] +33 X XX XX XX XX",
+  phone: "+33 6 08 64 79 20",
   address: {
     street: "12 bis rue de Bourbach le Bas",
     postalCode: "68290",
@@ -173,30 +173,30 @@ export const offer = {
       title: "Audit initial",
       body: "Un état des lieux complet de votre situation financière. Analyse de vos charges, de votre structure et de vos échéances. Restitution chiffrée sous trois semaines. Gratuit et sans engagement.",
       image: {
-        src: "/placeholders/offre-1-120x120.svg",
+        src: "/offre/audit.png",
         alt: "",
-        width: 120,
-        height: 120,
+        width: 383,
+        height: 383,
       } satisfies ImageSlot,
     },
     {
       title: "Accompagnement annuel",
       body: "Un suivi continu sur l'année : tableaux de bord, plan de trésorerie, points réguliers et arbitrages. Nous coordonnons vos interlocuteurs et préparons vos décisions importantes.",
       image: {
-        src: "/placeholders/offre-2-120x120.svg",
+        src: "/offre/accompagnement.png",
         alt: "",
-        width: 120,
-        height: 120,
+        width: 383,
+        height: 383,
       } satisfies ImageSlot,
     },
     {
       title: "Mission ponctuelle",
       body: "Une question précise, une décision à prendre : installation, achat de murs, association, recrutement. Nous intervenons sur un périmètre défini, avec un livrable et un délai.",
       image: {
-        src: "/placeholders/offre-3-120x120.svg",
+        src: "/offre/mission.png",
         alt: "",
-        width: 120,
-        height: 120,
+        width: 383,
+        height: 383,
       } satisfies ImageSlot,
     },
   ],
@@ -210,11 +210,13 @@ export const needs = {
   title: "Les questions que vous vous posez",
   intro:
     "Nous intervenons dans un environnement où beaucoup de praticiens ont déjà été démarchés, parfois maladroitement. Voici, sans détour, les réponses aux questions qui reviennent le plus souvent lors d'un premier échange.",
+  /* Illustration décorative : elle porte le mot « FAQ », que le titre de
+     section dit déjà. `alt` vide pour ne pas le faire lire deux fois. */
   image: {
-    src: "/placeholders/besoins-illustration-520x560.svg",
+    src: "/faq.png",
     alt: "",
-    width: 520,
-    height: 560,
+    width: 1536,
+    height: 1024,
   } satisfies ImageSlot,
   /**
    * 7 questions, classées par ordre d'importance. Le premier item est ouvert
@@ -267,9 +269,13 @@ export const needs = {
 /* -------------------------------------------------------------------------- */
 
 export const contactSection = {
-  title: "Commençons par un premier échange",
+  title: "Contactez-nous",
+  /* Seule la première proposition s'écarte du document : elle renvoyait au
+     formulaire, remplacé par un contact direct. La suite est conservée. */
   subtitle:
-    "Décrivez votre situation en quelques lignes. Nous revenons vers vous sous quarante-huit heures pour convenir d'un premier échange, sans engagement de votre part.",
+    "Écrivez-nous ou appelez-nous. Nous revenons vers vous sous quarante-huit heures pour convenir d'un premier échange, sans engagement de votre part.",
+  emailLabel: "Par email",
+  phoneLabel: "Par téléphone",
 };
 
 /**
@@ -437,6 +443,8 @@ export const posts: Post[] = [
 export type PageSection = {
   title: string;
   body: string[];
+  /** Visuel facultatif, posé à côté du texte en deux colonnes. */
+  image?: ImageSlot;
 };
 
 export type QaItem = {
@@ -460,23 +468,44 @@ export type LegalSection = {
 
 export const pages = {
   about: {
-    eyebrow: "[TODO] Eyebrow — 2 à 4 mots",
-    title: "[TODO] Titre de page — 3 à 6 mots",
-    lead: "[TODO] Chapô — 40 à 60 mots",
-    metaTitle: "[TODO] Title SEO — 50 à 60 caractères",
-    metaDescription: "[TODO] Description SEO — 150 à 160 caractères",
+    eyebrow: "Le cabinet",
+    title: "Un cabinet, une conviction",
+    lead: "Vigie est né d'un constat simple : les professionnels libéraux de santé dirigent une entreprise sans en avoir les moyens. Pas de directeur financier, pas de tableau de bord, pas d'interlocuteur qui regarde l'ensemble. Le cabinet existe pour occuper cette place, aux côtés de leurs conseils habituels.",
+    metaTitle: "À propos — Cabinet Vigie, conseil aux libéraux de santé",
+    metaDescription:
+      "Cabinet Vigie accompagne les professionnels libéraux de santé dans le pilotage financier de leur activité. Basé en Alsace, intervention dans toute la France.",
     sections: [
       {
-        title: "[TODO] Titre section 1 — 3 à 6 mots",
-        body: ["[TODO] Paragraphe — 50 à 80 mots"],
+        title: "Ancrés en Alsace, disponibles partout",
+        body: [
+          "Le cabinet est installé à Lauw, dans le Haut-Rhin. Cet ancrage n'est pas anodin : c'est en Alsace que le projet est né, au contact de cabinets libéraux et de praticiens de terrain. Nos échanges se tiennent aussi bien en présentiel qu'à distance, ce qui nous permet d'accompagner des professionnels partout en France. La proximité tient à la disponibilité, pas au kilométrage.",
+        ],
+        /* Le fichier est stocké en paysage avec une rotation EXIF : les
+           dimensions déclarées sont celles après rotation. */
+        image: {
+          src: "/a-propos/bureaux.jpg",
+          alt: "Les bureaux du cabinet Vigie à Lauw, dans le Haut-Rhin.",
+          width: 3024,
+          height: 4032,
+        } satisfies ImageSlot,
       },
       {
-        title: "[TODO] Titre section 2 — 3 à 6 mots",
-        body: ["[TODO] Paragraphe — 50 à 80 mots"],
+        title: "Maxime Ernst, fondateur",
+        body: [
+          "Après une classe préparatoire aux grandes écoles, j'ai été formé au Master Finance de Grenoble École de Management. J'ai ensuite travaillé en conseil financier auprès de PME et d'ETI à Paris, sur des sujets de financement et de structure de coûts, puis en optimisation des achats en Suisse. J'exerce aujourd'hui encore au sein d'un établissement de santé suisse, au contact quotidien des soignants.",
+        ],
+        image: {
+          src: "/a-propos/maxime-ernst.png",
+          alt: "Portrait de Maxime Ernst, fondateur du cabinet Vigie.",
+          width: 1080,
+          height: 1350,
+        } satisfies ImageSlot,
       },
       {
-        title: "[TODO] Titre section 3 — 3 à 6 mots",
-        body: ["[TODO] Paragraphe — 50 à 80 mots"],
+        title: "Pourquoi ce cabinet existe",
+        body: [
+          "Mon père a exercé vingt ans comme professionnel libéral de santé. J'ai grandi avec les questions qu'il se posait le soir, une fois la tournée terminée, et les décisions prises faute de temps ou d'interlocuteur. Arbitre de football depuis huit ans, j'ai appris à observer, à rester impartial et à décider sous pression. C'est exactement ce qu'on attend d'une vigie : regarder plus loin, et alerter avant.",
+        ],
       },
     ] as PageSection[],
   },
